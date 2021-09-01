@@ -1,0 +1,81 @@
+<h1><%= @post.title%></h1>
+    <strong>Tags:</strong>
+    <%@post.tags.each do |tag|%>
+        <p id="tag" class="btn btn-info btn-sm"><%= link_to tag.name, posts_path(tag: tag.name) %></p>
+    <% end %>
+    <br>
+    <small>Favourited by: <%= @post.favourites.count %> users</small>
+    <% if @post.favourites.find_by(user: current_user).present?  && can?(:destroy, @post.favourites.find_by(user: current_user)) %>
+      <%= link_to(
+        "💔 Unfavourites",
+        favourite_path(@post.favourites.find_by(user: current_user)), 
+        class:"btn btn-outline-warning",
+        method: :delete
+        ) %>
+      <% else can?(:favourites, @post) %>
+      <%= link_to(
+              "💖 favourites",
+              post_favourites_path(@post),
+              class:"btn btn-outline-danger",
+              method: :post
+        ) %>
+      <% end %>
+   
+<p><%= image_tag("#{@post.image}") %></p>
+<p><%= @post.body %></p>
+<div>
+    created_by: <%= @post.user&.name || "Deleted" %>
+</div>
+<div>
+    <small><%= time_ago_in_words(@post.updated_at)%></small>
+    <div class="button">
+    <% if can? :crud, @post %>
+        <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-primary" %>
+    <% end %>
+    <% if can? :crud, @post %>
+        <%= link_to "Delete", post_path(@post.id), class: "btn btn-outline-primary", method: :delete, data: {confirm: "Are you sure you want to delete the post?"}%>
+    <% end %>
+    </div>
+</div>
+<div class="comment-input">
+    <h3>Comments</h3>
+    <%= form_with model: [@post, @comment], local:true do |form| %>
+        <% if @comment.errors.any? %>
+            <p><% @comment.errors.full_messages.join(",")%></p>
+        <% end %>
+
+        <div>
+            <%= form.text_area(:body, style:"width:100%;", rows:3, placeholder: "What's on your mind?", class:'name_of_css_class')%>
+        </div><br>
+        <div class="button"><%= form.submit class: "btn btn-outline-primary" %></div>
+    <% end %>
+</div>
+
+<% @comments.each do |comment| %>
+    <div class="comment">
+        <p class="comment-body"><%= comment.body %>
+            <% if comment.likes.find_by(user: current_user).present?  && can?(:destroy, comment.likes.find_by(user: current_user)) %>
+            <%= link_to(
+                "👎 Unlike",
+                like_path(comment.likes.find_by(user: current_user)), 
+                class:"btn btn-danger ",
+                method: :delete
+                ) %>
+            <% else can?(:like, comment) %>
+            <%= link_to(
+                    "👍 Like",
+                    post_comment_likes_path(@post, comment),
+                    class:"btn btn-success ",
+                    method: :post
+                ) %>
+            <% end %>
+            <small>
+                (<%= pluralize(comment.likes.count, "likes") %>)
+            </small>
+        <p>
+        <small>Commented <%= time_ago_in_words(comment.updated_at) %></small>
+            <div> Commented by: <%= comment.user&.name || "Deleted" %>
+        <% if can? :crud, comment %>
+            <%= link_to "Delete", post_comment_path(comment.post_id, comment.id), method: :delete, data: {confirm: "Are you sure you want to delete your comment?"} %>
+        <% end %>
+<% end %>
