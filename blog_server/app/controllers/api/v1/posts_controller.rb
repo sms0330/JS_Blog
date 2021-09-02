@@ -30,7 +30,7 @@ class Api::V1::PostsController < Api::ApplicationController
     end
 
     def destroy
-        if @post || @post.destroy
+        if @post.destroy
             head :ok
         else
             head :bad_request

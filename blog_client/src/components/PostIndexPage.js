@@ -10,9 +10,9 @@ export default function PostIndexPage(props) {
       setPosts(posts);
     });
   }, []);
-  const deletePost = id => {
-    setPosts(posts.filter(p => p.id !== id));
-  };
+  // const deletePost = id => {
+  //   setPosts(posts.filter(p => p.id !== id));
+  // };
   const truncate = (str, n) => {
 		return str?.length > n ? str.substr(0, n - 1) + "..." : str;
 	};
@@ -28,12 +28,12 @@ export default function PostIndexPage(props) {
                 <p>{truncate(post.body, 50)}</p>
                 <small>Created at: {new Date(post.created_at).toLocaleDateString()}</small>
                 <small>Author: {post.author ? post.author.name : null}</small>
-                <button
+                {/* <button
                   className="mini ui right floated red button"
                   onClick={() => deletePost(post.id)}
                 >
                   Delete
-                </button>
+                </button> */}
                 <div className="post-card-footer"></div>
               </div>
             </div>

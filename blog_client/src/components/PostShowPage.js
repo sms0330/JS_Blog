@@ -6,6 +6,7 @@ import Spinner from './Spinner';
 import NewCommentForm from './NewCommentForm';
 
 export default function PostShowPage(props) {
+  const [posts, setPosts] = useState([]);
   const [post, setPost] = useState(null);
   const [comment, setComment] = useState({});
   const [errors, setErrors] = useState([]);
@@ -16,10 +17,14 @@ export default function PostShowPage(props) {
     });
   }, [props.match.params.id]);
   
-  const deletePost = () => {
-    Post.destroy(props.match.params.id).then(post => {
-      setPost(post);
-    });
+  const deletePost = id => {
+    Post.destroy(id)
+    .then(data => {
+      if(data.status === 200) {
+        setPosts(posts);
+      }
+      props.history.push("/posts");
+    })
   };
 
   const deleteComment = commentId => {
