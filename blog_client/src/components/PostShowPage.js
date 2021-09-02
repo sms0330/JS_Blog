@@ -24,7 +24,9 @@ export default function PostShowPage(props) {
 
   const deleteComment = commentId => {
     setPost({ ...post, comments: post.comments.filter(comment => comment.id !== commentId) });
+    Comment.destroy(props.match.params.id, commentId);
   };
+
   const createComment = e => {
     e.preventDefault();
     const { currentTarget } = e;
@@ -37,9 +39,10 @@ export default function PostShowPage(props) {
     
     Comment.create(newComment).then(data => {
       if (!data.errors) {
-          props.history.push(`/posts/${data.post_id}`);  
+          props.history.push(`/posts/${data.post_id}`);
       } else {
           setErrors(data.errors);
+          console.log(errors)
       };
     });
     

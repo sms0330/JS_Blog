@@ -14,8 +14,8 @@ class Api::V1::CommentsController < Api::ApplicationController
     end
 
     def destroy
-        comment = Comment.find params[:id]
-        if @comment || @comment.destroy
+        @comment = Comment.find params[:id]
+        if @comment.destroy
             head :ok
         else
             head :bad_request

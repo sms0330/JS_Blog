@@ -49,8 +49,8 @@ export const Comment = {
       body: JSON.stringify(params),
     }).then(res => res.json());
   },
-  destroy(params, id) {
-    return fetch(`${BASE_URL}/posts/${params.post_id}/comments/${id}`, {
+  destroy(post_id, id) {
+    return fetch(`${BASE_URL}/posts/${post_id}/comments/${id}`, {
       method: 'DELETE',
       credentials: 'include',
     });
