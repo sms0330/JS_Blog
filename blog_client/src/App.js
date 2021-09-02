@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import PostIndexPage from './components/PostIndexPage';
 import PostShowPage from './components/PostShowPage';

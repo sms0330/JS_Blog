@@ -31,7 +31,6 @@ export default function PostShowPage(props) {
   };
   return post ? (
     <div>
-      <h1>Post</h1>
       <PostDetails {...post} />
       <br />
       <h2>Comments</h2>
