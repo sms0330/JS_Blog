@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do 
-      resources :posts
+      resources :posts do
+        resources :comments, only: [:create, :destroy]
+      end
       resource :session, only: [:create, :destroy]
       resources :users, only: [:create] do
         get :current, on: :collection

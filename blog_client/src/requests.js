@@ -38,6 +38,26 @@ export const Post = {
   },
 };
 
+export const Comment = {
+  create(params) {
+    return fetch(`${BASE_URL}/posts/${params.post_id}}/comments`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+    }).then(res => res.json());
+  },
+  destroy(params, id) {
+    return fetch(`${BASE_URL}/posts/${params.post_id}/comments/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+  },
+};
+
+
 //Sign In AJAX Helper
 export const Session = {
   create(params) {

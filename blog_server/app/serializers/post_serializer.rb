@@ -22,6 +22,8 @@ class PostSerializer < ActiveModel::Serializer
   class CommentSerializer < ActiveModel::Serializer
     attributes :id, :body, :created_at, :updated_at, :author_name, :like_count
 
+    belongs_to :user, key: :author
+    
     def author_name
       object.user&.name
     end
