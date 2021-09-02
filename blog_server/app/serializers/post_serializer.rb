@@ -3,6 +3,7 @@ class PostSerializer < ActiveModel::Serializer
     :id, 
     :title,
     :body,
+    :image,
     :created_at,
     :updated_at,
     :favourites_count,

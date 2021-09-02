@@ -40,7 +40,7 @@ class Api::V1::PostsController < Api::ApplicationController
     private
 
     def post_params
-        params.require(:posts).permit(:title, :body, :image, :tag_names)
+        params.require(:post).permit(:title, :body, :image, :tag_names)
     end
 
     def find_post
