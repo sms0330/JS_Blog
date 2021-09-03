@@ -11,30 +11,30 @@ function Navbar(props) {
     }
   };
   return (
-    <nav
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        padding: '10px 30px',
-      }}
-    >
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/posts">Posts</NavLink>
+    <nav className="ui large menu">
+      <NavLink className="active item" to="/">Home</NavLink>
+      <NavLink className="item" to="/posts">Posts</NavLink>
 
+      <div className="right menu">
       {currentUser ? (
         <>
-          <span>Welcome {currentUser.name}</span>
-          <a href="#sign_out" onClick={handleSignOutClick}>
+          <span className="item">Welcome {currentUser.name}</span>
+          <a className="active item" href="#sign_out" onClick={handleSignOutClick}>
             Sign Out
           </a>
-          <NavLink to="/posts/new">New Post</NavLink>
+          <NavLink className="active item" to="/posts/new">New Post</NavLink>
         </>
       ) : (
         <>
-          <NavLink to="/sign_in">Sign In</NavLink>
-          <NavLink to="sign_up">Sign Up</NavLink>
+          <div className="item">
+          <NavLink className="ui button" to="/sign_in">Sign In</NavLink>
+          </div>
+          <div className="item">
+          <NavLink className="ui primary button" to="sign_up">Sign Up</NavLink>
+          </div>
         </>
       )}
+      </div>
     </nav>
   );
 }

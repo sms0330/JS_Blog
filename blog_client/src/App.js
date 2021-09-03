@@ -13,6 +13,7 @@ import { Session, User } from './requests';
 import AuthRoute from './components/AuthRoute';
 import SignUpPage from './components/SignUpPage';
 import NotFoundPage from './components/NotFoundPage';
+import PostEditPage from './components/PostEditPage';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -68,6 +69,11 @@ const App = () => {
             exact
             path="/posts/new"
             component={NewPostPage}
+          />
+          <AuthRoute
+            path="/posts/:id/edit"
+            isAuthenticated={!!currentUser}
+            component={PostEditPage}
           />
           <AuthRoute
             isAuthenticated={!!currentUser}

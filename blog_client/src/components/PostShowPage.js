@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import PostDetails from './PostDetails';
 import CommentList from './CommentList';
 import { Post, Comment } from '../requests';
@@ -65,11 +66,17 @@ export default function PostShowPage(props) {
     <div>
       <PostDetails {...post} />
       <button
-      className="ui left floated red button"
+      className="ui right floated red button"
       onClick={() => deletePost(post.id)}
       >
         Delete
       </button>
+      <Link
+        className="ui left floated orange button"
+        to={`/posts/${post.id}/edit`}
+      >
+        Edit
+      </Link>
       <br />
       <h2>Comments</h2>
       <NewCommentForm
