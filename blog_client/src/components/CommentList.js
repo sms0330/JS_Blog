@@ -4,7 +4,7 @@ import CommentDetails from './CommentDetails';
 function CommentList(props) {
   return (
     <div className="CommentList">
-      {props.comments.slice(0).reverse().map(comment => (
+      {props.comments.map(comment => (
         <div className="ui segment" key={comment.id}>
           <CommentDetails {...comment} onDeleteClick={props.onCommentDelete} />
         </div>

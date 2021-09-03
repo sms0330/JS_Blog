@@ -36,33 +36,28 @@ export default function PostShowPage(props) {
     e.preventDefault();
     const { currentTarget } = e;
     const fd = new FormData(currentTarget);
-
     const newComment = {
       body: fd.get("body"),
+      created_at: "",
       post_id: post.id
     };
     
     Comment.create(newComment).then(data => {
       if (!data.errors) {
-          props.history.push(`/posts/${data.post_id}`);
+        setPost({
+          ...post,
+          comments: [
+            {
+              ...comment,
+              id: Math.max(...post.comments.map(comment => comment.id)) + 1,
+            },
+            ...post.comments
+          ],
+        });
       } else {
           setErrors(data.errors);
           console.log(errors)
       };
-    });
-    
-    currentTarget.reset();
-    window.location.reload();
-
-    setPost({
-      ...post,
-      comments: [
-        {
-          ...comment,
-          id: Math.max(...post.comments.map(comment => comment.id)) + 1,
-        },
-        ...post.comments,
-      ],
     });
   };
   
