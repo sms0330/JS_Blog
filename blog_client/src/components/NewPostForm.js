@@ -22,7 +22,7 @@ export default class NewPostForm extends Component {
         <div className="field">
           <label htmlFor="body">Body</label>
           <FormErrors errors={this.props.errors} formField="body" />
-          <input
+          <textarea
             type="text"
             onChange={e => {
               this.props.onChange({ body: e.target.value });

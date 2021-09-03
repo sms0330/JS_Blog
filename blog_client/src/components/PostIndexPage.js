@@ -25,6 +25,7 @@ export default function PostIndexPage(props) {
               <div className="ui card">
                 <img src={`http://localhost:3000${post.image.small.url}`} alt={post.title}/>
                 <strong><h4><Link to={`/posts/${post.id}`}>{post.title}</Link></h4></strong>
+                <small>{post.tags.name}</small>
                 <p>{truncate(post.body, 50)}</p>
                 <small>Created at: {new Date(post.created_at).toLocaleDateString()}</small>
                 <small>Author: {post.author ? post.author.name : null}</small>

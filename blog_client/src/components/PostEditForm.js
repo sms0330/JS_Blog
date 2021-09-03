@@ -44,7 +44,7 @@ const PostEditForm = props => {
         <textarea
           name="body"
           id="body"
-          rows="3"
+          rows="10"
           defaultValue={updatePost.body}
           placeholder={postPlaceholder.body}
         />

@@ -6,7 +6,7 @@ function CommentDetails(props) {
     <div className="ui segment CommentDetails">
         <div className="ui labeled button" tabIndex="0">
          <div className="ui button">
-          <i className="heart icon"></i> Like
+          <i className="heart pink icon"></i> Like
          </div>
           <button className="ui basic left pointing label">{props.like_count}</button>
         </div>
@@ -17,7 +17,6 @@ function CommentDetails(props) {
       <p>
         <small> Commenter: {props.author_name} |</small>
         <small> Create Date: {new Date(props.created_at).toLocaleDateString()} |</small>
-        {/* <small> ({props.like_count}likes)</small> */}
         <button
           className="ui right floated red button"
           onClick={() => {
@@ -27,7 +26,6 @@ function CommentDetails(props) {
           Delete
         </button>
       </p>
-      {/* <StarRating max={5} current={props.rating} /> */}
     </div>
   );
 }

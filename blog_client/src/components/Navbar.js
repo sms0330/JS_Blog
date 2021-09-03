@@ -14,6 +14,13 @@ function Navbar(props) {
     <nav className="ui large menu">
       <NavLink className="active item" to="/">Home</NavLink>
       <NavLink className="item" to="/posts">Posts</NavLink>
+      <div className="ui category search">
+        <div className="ui icon input">
+          <input className="prompt" type="text" placeholder="Search Posts..." />
+          <i className="search icon"></i>
+        </div>
+        <div className="results"></div>
+      </div>
 
       <div className="right menu">
       {currentUser ? (
