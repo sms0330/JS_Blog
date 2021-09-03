@@ -23,7 +23,7 @@ export default function PostIndexPage(props) {
           {posts.map((post, index) => (
             <div className="column" key={index}>
               <div className="ui card">
-                <img src={`http://localhost:3000${post.image.small.url}`} alt={post.title}/>
+                <Link to={`/posts/${post.id}`}><img src={`http://localhost:3000${post.image.small.url}`} alt={post.title}/></Link>
                 <strong><h4><Link to={`/posts/${post.id}`}>{post.title}</Link></h4></strong>
                 <small>{post.tags.name}</small>
                 <p>{truncate(post.body, 50)}</p>
