@@ -44,6 +44,10 @@ class Ability
       comment.user == user
     end
 
+    can :crud, Reply do |reply|
+      reply.user == user
+    end
+
     can :favourite, Post do |post|
       user.persisted? && user != post.user
     end

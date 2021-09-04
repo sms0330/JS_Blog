@@ -52,7 +52,7 @@
 </div>
 
 <% @comments.each do |comment| %>
-    <div class="comment">
+    <div class="card">
         <p class="comment-body"><%= comment.body %>
             <% if comment.likes.find_by(user: current_user).present?  && can?(:destroy, comment.likes.find_by(user: current_user)) %>
             <%= link_to(
@@ -73,9 +73,38 @@
                 (<%= pluralize(comment.likes.count, "likes") %>)
             </small>
         <p>
-        <small>Commented <%= time_ago_in_words(comment.updated_at) %></small>
-            <div> Commented by: <%= comment.user&.name || "Deleted" %>
+        <small>Commented <%= time_ago_in_words(comment.updated_at) %> ago  | Commented by: <%= comment.user&.name || "Deleted" %></small>
         <% if can? :crud, comment %>
-            <%= link_to "Delete", post_comment_path(comment.post_id, comment.id), method: :delete, data: {confirm: "Are you sure you want to delete your comment?"} %>
+            <%= link_to "Delete", post_comment_path(comment.post_id, comment.id), class:"btn btn-warning btn-sm", method: :delete, data: {confirm: "Are you sure you want to delete your comment?"} %>
         <% end %>
+                  
+
+        <div class="comment-nav" align="left">
+            <button onclick="showHide('comment_reply_<%= comment.id %>')" onfocus="this.blur()">Reply</button>
+        </div>
+         <div id="comment_reply_<%= comment.id %>" style="display:none;">
+          <h5>Add Reply</h5>
+            <%= form_for [@post, comment, Reply.new] do |f| %>
+               <%= f.text_field(:body, style:"width:50%;", rows:3, placeholder: "add reply here..") %>
+                <%= f.submit "Create Reply" %>
+            <% end %>
+        </div>
+          <% comment.replies.each do |reply| %>
+                    <div class="text-start" style="margin-left:5rem">
+                        <%= reply.body %>
+                         <% if can? :crud, @reply %>
+                           <small><%= link_to "Delete", reply_path(reply), method: :delete, data: {confirm: "Are you sure you want to delete your reply?"} %></small>
+                        <% end %>
+                    </div>
+          <% end %>
 <% end %>
+
+<script type="text/javascript">
+    function showHide(id) {
+       var obj = document.getElementById(id);
+       if (obj.style.display == 'none')
+           obj.style.display = 'block';
+       else
+           obj.style.display = 'none';
+    }
+</script>

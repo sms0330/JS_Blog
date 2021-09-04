@@ -5,4 +5,6 @@ class Comment < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   has_many :likers, through: :likes, source: :user
+
+  has_many :replies, dependent: :destroy
 end

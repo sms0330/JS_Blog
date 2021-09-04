@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :favourites, shallow: true, only: [:create, :destroy]
     get :favourited, on: :collection
     resources :comments do
+      resources :replies, shallow: true, only: [:create, :destroy]
       resources :likes, shallow: true, only: [:create, :destroy]
     end
   end

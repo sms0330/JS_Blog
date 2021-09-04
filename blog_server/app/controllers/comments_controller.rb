@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 
         if can? :crud, @comment
             if @comment.save
-                redirect_to post_path(@post), notice: "New Comment!"
+                redirect_to post_path(@post), notice: "Comment Created!"
             else
                 @comments = @post.comments.order(created_at: :desc)
                 render 'posts/show', alert: "error!"
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
         comment = Comment.find params[:id]
         if can? :crud, comment
             comment.destroy
-            redirect_to post_path(comment.post_id)
+            redirect_to post_path(comment.post_id), notice: "Comment Deleted!"
         else
             redirect_to root_path, alert: "Not authorized!"
         end
