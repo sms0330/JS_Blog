@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import StarRating from './StarRating';
 
 function CommentDetails(props) {
+  let [ like, setLike ] = useState(0)
+
   return (
     <div className="ui segment CommentDetails">
         <div className="ui labeled button" tabIndex="0">
          <div className="ui button">
-          <i className="heart pink icon"></i> Like
+          <i className="heart pink icon" onClick={ () => setLike(like + 1) }></i>Likes
          </div>
-          <button className="ui basic left pointing label">{props.like_count}</button>
+          <button className="ui basic left pointing label">{props.like_count+like}</button>
         </div>
       <div className="ui header"></div>
       <p>
