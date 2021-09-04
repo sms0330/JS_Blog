@@ -8,7 +8,7 @@ class Post < ApplicationRecord
     has_many :tags, through: :taggings
 
     validates :title, presence: true, uniqueness: true
-    validates :body, presence: true, length: {minimum: 50}
+    validates :body, presence: true, length: {minimum: 30}
     belongs_to :user, optional: true
 
     mount_uploader :image, ImagesUploader

@@ -54,8 +54,13 @@ class Ability
     can :like, Comment do |comment|
       user.persisted? && user != comment.user
     end
+
     can :destroy, Like do |like|
       like.user == user
+    end
+
+    can :crud, Upload do |upload|
+      upload.user == user
     end
 
   end
