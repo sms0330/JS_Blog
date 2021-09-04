@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+// import logo from '../logo.png';
 
 function Navbar(props) {
   const { currentUser, onSignOut } = props;
@@ -11,25 +12,32 @@ function Navbar(props) {
     }
   };
   return (
-    <nav className="ui large menu">
+    <nav className="ui large invert menu">
+      {/* <div className="item">
+         <img src={logo} alt={"logo"} />
+      </div> */}
       <NavLink className="active item" to="/">Home</NavLink>
       <NavLink className="item" to="/posts">Posts</NavLink>
+      <div className="item">
       <div className="ui category search">
         <div className="ui icon input">
           <input className="prompt" type="text" placeholder="Search Posts..." />
           <i className="search icon"></i>
         </div>
-        <div className="results"></div>
       </div>
-
+      </div>
       <div className="right menu">
       {currentUser ? (
         <>
           <span className="item">Welcome {currentUser.name}</span>
-          <a className="active item" href="#sign_out" onClick={handleSignOutClick}>
+          <div className="item">
+          <a className="ui orange button" href="#sign_out" onClick={handleSignOutClick}>
             Sign Out
           </a>
-          <NavLink className="active item" to="/posts/new">New Post</NavLink>
+          </div>
+          <div className="item">
+          <NavLink className="ui teal button" to="/posts/new">New Post</NavLink>
+          </div>
         </>
       ) : (
         <>

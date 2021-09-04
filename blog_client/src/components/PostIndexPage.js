@@ -22,20 +22,16 @@ export default function PostIndexPage(props) {
       <div className="row">
           {posts.map((post, index) => (
             <div className="column" key={index}>
-              <div className="ui card">
+              <div className="ui segment">
                 <Link to={`/posts/${post.id}`}><img src={`http://localhost:3000${post.image.small.url}`} alt={post.title}/></Link>
                 <strong><h4><Link to={`/posts/${post.id}`}>{post.title}</Link></h4></strong>
-                <small>{post.tags.name}</small>
-                <p>{truncate(post.body, 50)}</p>
-                <small>Created at: {new Date(post.created_at).toLocaleDateString()}</small>
-                <small>Author: {post.author ? post.author.name : null}</small>
-                {/* <button
-                  className="mini ui right floated red button"
-                  onClick={() => deletePost(post.id)}
-                >
-                  Delete
-                </button> */}
-                <div className="post-card-footer"></div>
+                
+                <p>{truncate(post.body, 100)}</p>
+                <div className="ui teal segment">
+                <small className="ui green image small label">Created at: {new Date(post.created_at).toLocaleDateString()}</small>
+                <small className="ui blue image label ">Author: {post.author ? post.author.name : null}</small>
+                {/* <small>{post.tags.map(tag => tag.name).join(' ')}</small> */}
+                </div>
               </div>
             </div>
           ))}
