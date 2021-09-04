@@ -21,6 +21,11 @@ class CommentsController < ApplicationController
 
     end
 
+    def show
+        @reply = reply.new
+        @replies = @comment.replies.order(updated_at: :desc)
+    end
+
     def destroy
         comment = Comment.find params[:id]
         if can? :crud, comment

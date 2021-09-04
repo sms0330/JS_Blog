@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     namespace :v1 do 
       resources :uploads, only: [:create]
       resources :posts do
-        resources :comments, only: [:create, :destroy]
+        resources :comments, only: [:create, :destroy] do
+          resources :replies, only: [:create, :destroy]
+        end
       end
       resource :session, only: [:create, :destroy]
       resources :users, only: [:create] do

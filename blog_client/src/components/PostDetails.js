@@ -5,7 +5,7 @@ function PostDetails(props) {
 
   return (
     <div className="ui segment">
-      <span className="ui teal tag label">{props.tags.map(tag => tag.name).join(' ')}</span>
+      <span className="ui green tag label">{props.tags.map(tag => tag.name).join(' ')}</span>
       <h2 >Title: {props.title}</h2>
       <div className="meta">
         <i className="like">

@@ -92,6 +92,7 @@
           <% comment.replies.each do |reply| %>
                     <div class="text-start" style="margin-left:5rem">
                         <%= reply.body %>
+                         <span class="btn btn-outline-info btn-sm">Replied <%= time_ago_in_words(reply.updated_at) %> ago  | Replied by: <%= reply.user&.name %></span>
                          <% if can? :crud, @reply %>
                            <small><%= link_to "Delete", reply_path(reply), method: :delete, data: {confirm: "Are you sure you want to delete your reply?"} %></small>
                         <% end %>

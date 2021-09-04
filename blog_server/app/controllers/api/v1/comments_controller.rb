@@ -22,6 +22,15 @@ class Api::V1::CommentsController < Api::ApplicationController
         end
     end
 
+    # def show
+    #     @comment = Comment.find(params[:id])
+    #     if @comment
+    #         render(json: @comment)
+    #     else
+    #         render(json: {error: " Not Found"})
+    #     end
+    # end
+
     private
 
     def record_invalid(error)

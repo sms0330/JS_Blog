@@ -72,7 +72,7 @@ export default function PostShowPage(props) {
         Delete
       </button>
       <Link
-        className="ui left floated orange button"
+        className="ui left floated yellow button"
         to={`/posts/${post.id}/edit`}
       >
         Edit

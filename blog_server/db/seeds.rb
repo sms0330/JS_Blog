@@ -4,8 +4,9 @@ Tag.destroy_all
 User.delete_all
 Post.destroy_all
 Comment.destroy_all
+Reply.destroy_all
 
-PASSWORD='0414'
+PASSWORD='1234'
 super_user=User.create(
     name: 'Joseph',
     email: 'sms0330@gmail.com',
@@ -46,6 +47,11 @@ tags = Tag.all
             rand(1..10).times.map do
             c = Comment.create(body: Faker::GreekPhilosophers.quote,  user: users.sample, post: p)
             c.likers = users.shuffle.slice(0, rand(users.count))
+                if c.valid?
+                    rand(1..5).times.map do
+                    Reply.create(body: Faker::GreekPhilosophers.quote,  user: users.sample, comment: c)
+                    end
+                end
             end
         end
         p.tags = tags.shuffle.slice(0, rand(tags.count))
@@ -53,9 +59,11 @@ end
 
 posts = Post.all
 comments = Comment.all
+replies = Reply.all
 
 puts "Generated #{posts.count} posts"
 puts "Generated #{comments.count} comments"
+puts "Generated #{replies.count} replies"
 puts "Generated #{users.count} users"
 puts "Generated #{Like.count} likes"
 puts "Generated #{Tag.count} tags"
