@@ -55,8 +55,29 @@ export const Comment = {
       credentials: 'include',
     });
   },
+  show(post_id, id) {
+    return fetch(`${BASE_URL}/posts/${post_id}/comments/${id}`).then(res => res.json());
+  },
 };
 
+export const Reply = {
+  create(params) {
+    return fetch(`${BASE_URL}/posts/${params.post_id}}/comments/${params.comment_id}/replies`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+    }).then(res => res.json());
+  },
+  destroy(post_id, comment_id, id) {
+    return fetch(`${BASE_URL}/posts/${post_id}/comments/${comment_id}/replies/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+  },
+};
 
 //Sign In AJAX Helper
 export const Session = {
