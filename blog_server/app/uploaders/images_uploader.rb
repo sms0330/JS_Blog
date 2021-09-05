@@ -10,9 +10,9 @@ class ImagesUploader < CarrierWave::Uploader::Base
       def full_filename(for_file)
         [super(for_file)].compact.join('_')
       end
-
-      process :resize_to_fit => [240, 10000], :if => :horizontal?
-      process :resize_to_fit => [10000, 240]  ,:if => :vertical?
+      process :resize_to_fill => [260, 190]
+      # process :resize_to_fit => [240, 10000], :if => :horizontal?
+      # process :resize_to_fit => [10000, 240]  ,:if => :vertical?
   end
 
   def horizontal?(new_file)

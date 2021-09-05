@@ -1,4 +1,6 @@
 class RepliesController < ApplicationController
+    before_action :authenticate_user!, except: [:show, :index]
+
     def create
         @reply = Reply.new reply_params
         @comment  = Comment.find params[:comment_id]

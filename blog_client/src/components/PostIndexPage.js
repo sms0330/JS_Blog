@@ -26,7 +26,7 @@ export default function PostIndexPage(props) {
                 <Link to={`/posts/${post.id}`}><img src={`http://localhost:3000${post.image.small.url}`} alt={post.title}/></Link>
                 <strong><h4><Link to={`/posts/${post.id}`}>{post.title}</Link></h4></strong>
                 
-                <p>{truncate(post.body, 100)}</p>
+                <p>{truncate(post.body, 50)}</p>
                 <div className="ui teal segment">
                 <small className="ui green image small label">Created at: {new Date(post.created_at).toLocaleDateString()}</small>
                 <small className="ui blue image label ">Author: {post.author ? post.author.name : null}</small>
