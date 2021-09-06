@@ -26,6 +26,17 @@ class PostSerializer < ActiveModel::Serializer
     belongs_to :user, key: :author
     has_many :replies
 
+    class ReplySerializer < ActiveModel::Serializer
+      attributes :id, :body, :created_at, :updated_at, :replier_name
+    
+      belongs_to :comment
+      belongs_to :user, key: :replier
+    
+      def replier_name
+        object.user&.name
+      end
+    end
+
     def author_name
       object.user&.name
     end
@@ -34,7 +45,7 @@ class PostSerializer < ActiveModel::Serializer
       object.likes.count
     end
   end
-
+    
   #-----------------------Custom methods and attributes to render in JSON format--->
 
   def favourites_count

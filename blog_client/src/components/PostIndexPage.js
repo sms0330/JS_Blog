@@ -27,9 +27,9 @@ export default function PostIndexPage(props) {
                 <strong><h4><Link to={`/posts/${post.id}`}>{post.title}</Link></h4></strong>
                 
                 <p>{truncate(post.body, 50)}</p>
-                <div className="ui teal segment">
-                <small className="ui green image small label">Created at: {new Date(post.created_at).toLocaleDateString()}</small>
-                <small className="ui blue image label ">Author: {post.author ? post.author.name : null}</small>
+                <div className="ui teal tiny segment">
+                <small className="ui green image tiny label">Created at: {new Date(post.created_at).toLocaleDateString()}</small>
+                <small className="ui blue image tiny label ">Author: {post.author ? post.author.name : null}</small>
                 {/* <small>{post.tags.map(tag => tag.name).join(' ')}</small> */}
                 </div>
               </div>

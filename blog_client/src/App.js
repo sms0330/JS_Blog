@@ -58,8 +58,7 @@ const App = () => {
             path="/sign_up"
             render={routeProps => <SignUpPage {...routeProps} onSignUp={getUser} />}
           />
-          <AuthRoute
-            isAuthenticated={!!currentUser}
+          <Route
             exact
             path="/posts/"
             component={PostIndexPage}
@@ -75,8 +74,7 @@ const App = () => {
             isAuthenticated={!!currentUser}
             component={PostEditPage}
           />
-          <AuthRoute
-            isAuthenticated={!!currentUser}
+          <Route
             exact
             path="/posts/:id"
             component={PostShowPage}

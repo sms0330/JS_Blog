@@ -1,35 +1,40 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Post } from '../requests';
 import NewPostForm from './NewPostForm';
 
-export default class NewPostPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      errors: [],
-      post: {},
-    };
-  }
-  createPost = event => {
-    event.preventDefault();
-    Post.create(this.state.post).then(post => {
-      if (post.errors) {
-        this.setState({ errors: post.errors });
-      } else this.props.history.push(`/posts/${post.id}`);
-    });
-  };
+const NewPostPage = props => {
+  const [errors, setErrors] = useState([]);
 
-  render() {
-    return (
-      <main>
-        <div className="header">Create a Post</div>
-        <NewPostForm
-          createPost={this.createPost}
-          post={this.state.post}
-          errors={this.state.errors}
-          onChange={val => this.setState({ post: { ...this.state.post, ...val } })}
-        />
-      </main>
-    );
-  }
-}
+  const createPost = event => {
+    event.preventDefault();
+    const { currentTarget } = event;
+    const fd = new FormData(currentTarget);
+
+    const newPost = {
+      title: fd.get("title"),
+      body: fd.get("body"),
+      image: fd.get("image"),
+      tag: fd.get("tag")
+    };
+
+    Post.create(newPost).then(data => {
+      if (data.errors) {
+        setErrors(data.errors);
+        console.log("errors: ", errors);
+      } else {
+        props.history.push(`/posts/${data.id}`);
+      }
+    });
+
+    currentTarget.reset();
+  };
+  return (
+    <NewPostForm
+      errors={errors}
+      onCreatePost={createPost}
+      buttonMessage="Create Post"
+    />
+  );
+};
+
+export default NewPostPage;
