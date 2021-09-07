@@ -10,23 +10,16 @@ const NewPostForm = props => {
   }
 
   // let tag = props.tags.map(tag => tag.name)
-  let updatePost = { title: '', body: '', image: '', tag: ''};
-  let postPlaceholder = { ...updatePost };
+  let updatePost = { title: '', body: '', image: '' };
 
   if (props.post) {
     updatePost = {
       title: props.post.title,
       body: props.post.body,
-      image: props.post.image.url,
-      tag: props.post.tag.name
-    };
-  } else {
-    postPlaceholder = {
-      title: 'Enter post title',
-      body: 'Enter post body',
-      tag: 'Enter post tag'
+      image: props.post.image.content_type
     };
   }
+
   return (
     <form className="ui form" onSubmit={event => doAction(event)}>
       <div className="field">
@@ -37,7 +30,7 @@ const NewPostForm = props => {
           name="title"
           id="title"
           defaultValue={updatePost.title}
-          placeholder={postPlaceholder.title}
+          placeholder="Enter post title"
         />
       </div>
       <div className="field">
@@ -47,10 +40,10 @@ const NewPostForm = props => {
           name="body"
           id="body"
           defaultValue={updatePost.body}
-          placeholder={postPlaceholder.body}
+          placeholder='Enter post body'
         />
       </div>
-      <div className="field">
+      {/* <div className="field">
           <label htmlFor="tag">Tag</label>
           <FormErrors errors={props.errors} forField="tag" />
           <div className="ui right labeled left icon input">
@@ -60,18 +53,16 @@ const NewPostForm = props => {
               name="tag"
               id="tag"
               defaultValue={updatePost.tag}
-              placeholder={postPlaceholder.tag}
+              placeholder='Enter post tag'
             />
             <i className="ui tag label">Add Tag</i>
           </div>
-        </div>
+      </div> */}
       <div className="field">
         <label htmlFor="image">Image</label>
         <input
           type="file"
-          accept="image/*"
-          name="image"
-          id="image"
+          // accept="image/*"
           defaultValue={updatePost.image}
         />
       </div>

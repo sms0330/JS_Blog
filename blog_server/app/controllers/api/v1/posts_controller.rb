@@ -13,7 +13,7 @@ class Api::V1::PostsController < Api::ApplicationController
 
     def index
         posts = Post.order(created_at: :desc)
-        render json: posts
+        render json: posts, each_serializer: PostCollectionSerializer
     end
 
     def show
@@ -40,7 +40,7 @@ class Api::V1::PostsController < Api::ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:title, :body, :image, :tag_names)
+        params.require(:post).permit(:title, :body, :tag_names, :image, images: [])
     end
 
     def find_post

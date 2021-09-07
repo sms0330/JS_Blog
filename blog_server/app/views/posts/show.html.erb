@@ -21,13 +21,15 @@
         ) %>
       <% end %>
    
-<p><%= image_tag("#{@post.image}") %></p>
-<p><%= @post.body %></p>
-<div>
-    created_by: <%= @post.user&.name || "Deleted" %>
-</div>
-<div>
-    <small><%= time_ago_in_words(@post.updated_at)%></small>
+    <% if @post.image.persisted? %>
+    <p> <%= image_tag(@post.image, alt: "#{@post.title} image") %></p>
+    <% end %>
+    <p><%= @post.body %></p>
+    <div>
+        created_by: <%= @post.user&.name || "Deleted" %>
+    </div>
+    <div>
+        <small><%= time_ago_in_words(@post.updated_at)%></small>
     <div class="button">
     <% if can? :crud, @post %>
         <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-primary" %>

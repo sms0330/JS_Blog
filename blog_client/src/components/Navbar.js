@@ -12,7 +12,7 @@ function Navbar(props) {
     }
   };
   return (
-    <nav className="ui large invert menu">
+    <nav className="ui large menu">
       {/* <div className="item">
          <img src={logo} alt={"logo"} />
       </div> */}

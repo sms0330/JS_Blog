@@ -34,7 +34,7 @@ end
 
 tags = Tag.all
 
-100.times do
+20.times do
     created_at = Faker::Date.backward(days:365 * 5)
         p = Post.create(
         title: Faker::Company.industry,
