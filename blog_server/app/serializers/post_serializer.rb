@@ -1,4 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
+  include Rails.application.routes.url_helpers
   attributes(
     :id, 
     :title,
@@ -10,6 +11,32 @@ class PostSerializer < ActiveModel::Serializer
     :tags
   )
 
+  # fo multiple file uploads
+  def images
+    # has_many_attached :images
+    
+    object.images_attachments.includes(:blob).map do |attachment|
+      {
+        id: attachment.id,
+        name: attachment.name,
+        content_type: attachment.blob.filename.to_s,
+        url: rails_blob_url(attachment)
+      }
+    end
+  end
+
+  # for a single file upload
+  def image 
+    attachment = object.image_attachment
+    unless attachment.nil?
+      {
+        id: attachment.id,
+        name: attachment.name,
+        content_type: attachment.blob.filename.to_s,
+        url: rails_blob_url(attachment)
+      }
+    end
+  end
   #-----------------------------Associations--------------->
 
   belongs_to :user, key: :author

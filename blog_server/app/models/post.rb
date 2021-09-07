@@ -11,7 +11,12 @@ class Post < ApplicationRecord
     validates :body, presence: true, length: {minimum: 30}
     belongs_to :user, optional: true
 
-    mount_uploader :image, ImagesUploader
+    has_one_attached(:image)
+
+    has_many_attached(:images)
+   
+    # has_one :file_attachment, dependent: :destroy
+    # has_one :file_blob, through: :file_attachment
 
     def tag_names
         self.tags.map(&:name).join(", ")
