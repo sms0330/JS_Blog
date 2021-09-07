@@ -19,9 +19,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do 
-      resources :uploads, only: [:create]
       resources :posts do
-        resources :comments, only: [:create, :destroy] do
+        resources :comments, only: [:show, :create, :destroy] do
           resources :replies, only: [:create, :destroy]
         end
       end

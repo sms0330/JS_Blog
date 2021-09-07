@@ -28,6 +28,7 @@ function CommentDetails(props) {
           Delete
         </button>
       </p>
+      {/* <small>{props.replies.map(reply => reply.body) }</small> */}
     </div>
   );
 }

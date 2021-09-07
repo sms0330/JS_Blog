@@ -12,7 +12,8 @@ function PostDetails(props) {
           <i className="like pink icon" onClick={ () => setLike(like + 1) }></i> {props.favourites_count+like} Likes
         </i>
       </div>
-      <img src={`http://localhost:3000${props.image.url}`} alt={props.title}/>
+      {props.image.url ?
+      <img src={`http://localhost:3000${props.image.url}`} alt={props.title}/> : null}
       <p>
         Body:
         {props.body} <br />
