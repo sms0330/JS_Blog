@@ -32,5 +32,7 @@ Rails.application.routes.draw do
     match "*unmatched_route", to: "application#not_found", via: :all
   end
 
-  
+  get 'callbacks/index'
+  get "/auth/github", as: :sign_in_with_github
+  get "auth/:provider/callback", to: "callbacks#index"
 end
