@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_post_id, only: [:show, :edit, :update, :destroy]
+  before_action :find_post_id, only: [:new, :show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
 
@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   
   def new
       @post = Post.new
-      @posts =  Post.all
   end
 
   def create
@@ -31,7 +30,6 @@ class PostsController < ApplicationController
   def show
       @comment = Comment.new
       @comments = @post.comments.order(updated_at: :desc)
-      @posts =  Post.all
   end
 
   def destroy
@@ -62,6 +60,7 @@ class PostsController < ApplicationController
 
   def find_post_id
       @post = Post.find params[:id]
+      @posts =  Post.all
   end
 
   def authorize_user!

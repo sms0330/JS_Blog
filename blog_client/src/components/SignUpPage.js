@@ -9,7 +9,8 @@ const SignUpPage = props => {
     event.preventDefault();
     const formData = new FormData(currentTarget);
     const params = {
-      name: formData.get('name'),
+      first_name: formData.get('first_name'),
+      last_name: formData.get('last_name'),
       email: formData.get('email'),
       password: formData.get('password'),
       password_confirmation: formData.get('password_confirmation'),
@@ -26,8 +27,12 @@ const SignUpPage = props => {
       <h1 className="ui center aligned header">Sign Up</h1>
       <form className="ui large form" onSubmit={handleSubmit}>
         <div className="field">
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" required />
+          <label htmlFor="first_name">First Name</label>
+          <input type="text" name="first_name" id="first_name" required />
+        </div>
+        <div className="field">
+          <label htmlFor="last_name">Last Name</label>
+          <input type="text" name="last_name" id="last_name" required />
         </div>
         <div className="field">
           <label htmlFor="email">Email</label>

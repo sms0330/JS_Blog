@@ -29,7 +29,7 @@ function Navbar(props) {
       <div className="right menu">
       {currentUser ? (
         <>
-          <span className="item">Welcome {currentUser.name}</span>
+          <span className="item">Welcome {currentUser.full_name}</span>
           <div className="item">
           <a className="ui orange button" href="#sign_out" onClick={handleSignOutClick}>
             Sign Out

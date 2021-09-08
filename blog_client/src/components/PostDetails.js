@@ -13,14 +13,15 @@ function PostDetails(props) {
         </i>
       </div>
       {props.image.url ?
-      <img src={`http://localhost:3000${props.image.url}`} alt={props.title}/> : null}
+      <img src={`http://localhost:3000${props.image.url}`} alt={props.title} style={{ width: "100%",
+      height: "auto" }}/> : null }
       <p>
         Body:
         {props.body} <br />
       </p>
       <small>Create Date: {new Date(props.created_at).toLocaleDateString()} | </small>
       <small>Update Date: {new Date(props.updated_at).toLocaleDateString()}</small>
-      <p>Author: {props.author.name} </p>
+      <p>Author: {props.author.full_name} </p>
     </div>
   );
 }

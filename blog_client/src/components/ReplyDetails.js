@@ -10,7 +10,7 @@ function ReplyDetails(props) {
         {props.body} <br />
       </p>
       <p>
-        <small> Replier: {props.replier_name} |</small>
+        <small> Replier: {props.replier_full_name} |</small>
         <small> Create Date: {new Date(props.created_at).toLocaleDateString()} |</small>
         <button
           className="ui right floated red button"

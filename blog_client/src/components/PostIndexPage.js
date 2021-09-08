@@ -29,7 +29,7 @@ export default function PostIndexPage(props) {
                 <p>{truncate(post.body, 50)}</p>
                 <div className="ui teal tiny segment">
                 <small className="ui green image tiny label">Created at: {new Date(post.created_at).toLocaleDateString()}</small>
-                <small className="ui blue image tiny label ">Author: {post.author ? post.author.name : null}</small>
+                <small className="ui blue image tiny label ">Author: {post.author ? post.author.first_name : null}</small>
                 {/* <small>{post.tags.map(tag => tag.name).join(' ')}</small> */}
                 </div>
               </div>
