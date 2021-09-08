@@ -9,27 +9,31 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light">
-      <span class="nav-left">
-        <div class="navbar-brand"><%= link_to "Blog On Rails", posts_path%></div>
-          <% if user_signed_in? %>
+    <div class="ui large menu">
+      <span class="left menu">
+        <div class="active item"><%= link_to "Home", root_path %></div>
+        <div class="item"><%= link_to "Posts", posts_path %></div>
+        <div class="item"><%= link_to "New Post", new_post_path %></div>
+        <div class="item"><%= render 'searches/search_form', post: @posts.klass %></div>
+      </span>      
+      <span class="right menu">
+        <% if user_signed_in? %>
             Hello <%= link_to current_user.full_name, edit_user_path(current_user.id) %>,
-            <%= link_to "Logout", session_path, method: :delete, data: {confirm: "are you sure you want to log out?"}%>
+            <%= link_to "Sign Out", session_path, method: :delete, data: {confirm: "are you sure you want to log out?"}, class: "ui orange button"%>
+            <div class="nav-item"><%= link_to 'Favourited Posts', favourited_posts_path %></div>
           <% else %>
-            <%= link_to "Login", new_session_path %> |
-            <%= link_to "Sign Up", new_user_path %> |
-            <%= link_to 'Sign in with Github', sign_in_with_github_path %>
+          <div className="item">
+            <%= link_to "Sign In", new_session_path, class: "ui button" %>
+          </div>
+          <div className="item">
+            <%= link_to "Sign Up", new_user_path, class: "ui primary button" %>
+          </div>
+          <div className="item">
+            <%= link_to 'Sign in with Github', sign_in_with_github_path, class: "ui green button" %>
+          </div>
           <% end %>
       </span>
-      
-      <span class="nav justify-content-end">
-        <div class="nav-item"><%= render 'searches/search_form', post: @posts.klass %></div>
-        <div class="nav-item"><%= link_to "Home", posts_path %></div>
-        <div class="nav-item"><%= link_to 'Favourited Posts', favourited_posts_path %></div>
-        <div class="nav-item"><%= link_to "New Post", new_post_path %></div>
-      </span>
-    </nav>
-    <hr>
+    </div>
     <div>
       <%= render 'layouts/alerts' %>
     </div>
