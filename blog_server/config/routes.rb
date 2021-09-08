@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get 'welcome/index'
+  get("/", {to:"welcome#index", as: "root"})
   get 'searches/result'
-  root "posts#index"
+  # root "posts#index"
 
   resources :posts do
     resources :favourites, shallow: true, only: [:create, :destroy]

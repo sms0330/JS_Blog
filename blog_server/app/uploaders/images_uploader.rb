@@ -4,13 +4,13 @@ class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   version :detail do
-    process :resize_to_fit => [600, 10000]
+    process :resize_to_fit => [1024, 10000]
   end
   version :small do
       def full_filename(for_file)
         [super(for_file)].compact.join('_')
       end
-      process :resize_to_fill => [260, 190]
+      process :resize_to_fill => [280, 210]
       # process :resize_to_fit => [240, 10000], :if => :horizontal?
       # process :resize_to_fit => [10000, 240]  ,:if => :vertical?
   end

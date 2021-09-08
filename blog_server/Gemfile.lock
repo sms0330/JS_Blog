@@ -164,11 +164,6 @@ GEM
     omniauth-github (1.4.0)
       omniauth (~> 1.5)
       omniauth-oauth2 (>= 1.4.0, < 2.0)
-    omniauth-google-oauth2 (0.8.2)
-      jwt (>= 2.0)
-      oauth2 (~> 1.1)
-      omniauth (~> 1.1)
-      omniauth-oauth2 (>= 1.6)
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
@@ -231,6 +226,8 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.6)
+    semantic-ui-sass (2.4.4.0)
+      sassc
     semantic_range (3.0.0)
     spring (2.1.1)
     sprockets (4.0.2)
@@ -277,7 +274,6 @@ DEPENDENCIES
   listen (~> 3.3)
   mini_magick (~> 4.11)
   omniauth-github (~> 1.4)
-  omniauth-google-oauth2
   pg (~> 1.1)
   popper_js (~> 2.9, >= 2.9.3)
   puma (~> 5.0)
@@ -286,6 +282,7 @@ DEPENDENCIES
   rails (~> 6.1.4)
   sass-rails (>= 6)
   selectize-rails
+  semantic-ui-sass
   spring
   tzinfo-data
   web-console (>= 4.1.0)
