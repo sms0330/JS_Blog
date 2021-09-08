@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update, :edit_password, :update_password]
+  before_action :find_posts
 
   def new
     @user = User.new
@@ -50,6 +51,9 @@ class UsersController < ApplicationController
   end
 
   private
+  def find_posts
+      @posts = Post.all
+  end
 
   def find_user
     @user = User.find_by(id: current_user.id)
