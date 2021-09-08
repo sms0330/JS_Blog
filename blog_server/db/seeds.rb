@@ -8,17 +8,20 @@ Reply.destroy_all
 
 PASSWORD='1234'
 super_user=User.create(
-    name: 'Joseph',
+    first_name: 'Jon',
+    last_name: 'Snow',
     email: 'sms0330@gmail.com',
     password: PASSWORD,
     is_admin: true
 )
 
 10.times do
-    name=Faker::Name.first_name
+    first_name=Faker::Name.first_name
+    last_name=Faker::Name.last_name
     User.create(
-        name: name,
-        email: "#{name}@example.com",
+        first_name: first_name,
+        last_name: last_name,
+        email: "#{first_name}@example.com",
         password: PASSWORD
     )
 end
@@ -34,7 +37,7 @@ end
 
 tags = Tag.all
 
-100.times do
+50.times do
     created_at = Faker::Date.backward(days:365 * 5)
         p = Post.create(
         title: Faker::Company.industry,

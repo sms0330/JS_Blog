@@ -14,7 +14,7 @@ class PostMailer < ApplicationMailer
         @owner = @post.user
         mail(
             to: @owner.email,
-            subject: "#{@post.user.name}, Your post is succesfully created"
+            subject: "#{@post.user.full_name}, Your post is succesfully created"
         )
     end
 

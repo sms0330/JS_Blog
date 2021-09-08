@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def update
     if params[:user][:current_password].blank?
-      if @user.update params.require(:user).permit(:name, :email)
+      if @user.update params.require(:user).permit(:first_name, :last_name, :email)
           redirect_to posts_path, notice: 'Your Name and Email Updated!'
       else
           render :edit, alert: 'Please Try Again!'
@@ -57,7 +57,8 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :name,
+      :first_name,
+      :last_name,
       :email,
       :password,
       :password_confirmation

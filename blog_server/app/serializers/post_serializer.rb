@@ -15,7 +15,7 @@ class PostSerializer < ActiveModel::Serializer
   belongs_to :user, key: :author
 
   class UserSerializer < ActiveModel::Serializer
-    attributes :id, :name, :email
+    attributes :id, :first_name, :last_name, :email
   end
 
   has_many :comments
