@@ -11,12 +11,12 @@ class CommentSerializer < ActiveModel::Serializer
     belongs_to :user, key: :replier
   
     def replier_name
-      object.user&.name
+      object.user&.full_name
     end
   end
 
   def author_name
-    object.user&.name
+    object.user&.full_name
   end
 
   def like_count
