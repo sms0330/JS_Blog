@@ -30,6 +30,7 @@ class PostsController < ApplicationController
   def show
       @comment = Comment.new
       @comments = @post.comments.order(updated_at: :desc)
+      @posts =  Post.all
   end
 
   def destroy
