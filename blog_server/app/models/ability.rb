@@ -63,9 +63,5 @@ class Ability
       like.user == user
     end
 
-    can :crud, Upload do |upload|
-      upload.user == user
-    end
-
   end
 end

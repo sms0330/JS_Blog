@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_205724) do
+ActiveRecord::Schema.define(version: 2021_09_07_233015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,10 @@ ActiveRecord::Schema.define(version: 2021_09_04_205724) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_admin"
+    t.string "uid"
+    t.string "provider"
+    t.string "oauth_token"
+    t.string "oauth_raw_data"
   end
 
   add_foreign_key "comments", "posts"
