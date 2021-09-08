@@ -21,7 +21,7 @@
         ) %>
       <% end %>
    
-<p><%= image_tag("#{@post.image}") %></p>
+<p><%= image_tag("#{@post.image.detail}") %></p>
 <p><%= @post.body %></p>
 <div>
     created_by: <%= @post.user&.full_name || "Deleted" %>
