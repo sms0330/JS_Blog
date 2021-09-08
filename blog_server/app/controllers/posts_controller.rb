@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  before_action :find_post_id, only: [:new, :show, :edit, :update, :destroy]
+  before_action :find_post_id, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
+  before_action :find_posts
 
   def index
     if params[:tag]
@@ -60,7 +61,10 @@ class PostsController < ApplicationController
 
   def find_post_id
       @post = Post.find params[:id]
-      @posts =  Post.all
+  end
+
+  def find_posts
+    @posts =  Post.all
   end
 
   def authorize_user!
