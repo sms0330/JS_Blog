@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searches/result'
   root "posts#index"
 
   resources :posts do
