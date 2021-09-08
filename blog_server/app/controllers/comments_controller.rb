@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
 
         if can? :crud, @comment
             if @comment.save
+                PostMailer.new_comment(@comment).deliver_now
                 redirect_to post_path(@post), notice: "Comment Created!"
             else
                 @comments = @post.comments.order(created_at: :desc)

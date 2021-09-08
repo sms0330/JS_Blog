@@ -1,0 +1,10 @@
+<p>Hello <%= @owner.name %>,</p>
+<p> You have a new comment to your post. </p>
+<p> Post title: <%= @post.title %></p>
+<p> Post tag: <%= @post.tag_names %></p>
+<p> Comment body: <%= @comment.body %></p>
+<p>To view your post's comment, please follow this link:
+<%= link_to 'Your Post', post_url(@post) %>
+</p>
+<p>Regards,</p>
+<p>JS Blog Team</p>  
