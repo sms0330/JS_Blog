@@ -21,7 +21,8 @@ class User < ApplicationRecord
     def self.create_from_oauth(oauth_data)
         name = oauth_data["info"]["name"]&.split || oauth_data["info"]["nickname"]
         self.create(
-            name: name,
+            name: name[0],
+            # last_name: name[1] || "",
             uid: oauth_data["uid"],
             provider: oauth_data["provider"],
             oauth_raw_data: oauth_data,
