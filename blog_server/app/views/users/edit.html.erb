@@ -1,25 +1,38 @@
-<h1>Edit User</h1>
-
-<% if @user.errors.any? %>
-    <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg%></li>
+<div class="ui large form">
+    <%= form_with model: @user, local: true do |f|%>
+    <div class="ui stacked segment">
+        <h2 class="ui brown header">My Profile</h2>
+        <% if @user.errors.any?%>
+        <p style="color:red;">
+            <%= @user.errors.full_messages.join(', ') %>
+        </p>
         <% end %>
-    <ul>
-<% end %>
-<%= form_with model: @user, local: true do |f| %>
-    <div>
-        <%= f.label :first_name%>
-        <%= f.text_field :first_name%>
+        <p><%= flash[:notice] || flash[:alert] || flash[:success]%></p>
+        <div class="field">
+        <strong><%= f.label :first_name, "First name"%></strong>
+        <%= f.text_field :first_name, style:"width:100%;"%>
+        </div>
+        <div class="field">
+        <strong><%= f.label :last_name, "Last name"%></strong>
+        <%= f.text_field :last_name, style:"width:100%;"%>
+         </div>
+        <div class="field">
+        <strong><%= f.label :email, "Email"%></strong>
+        <%= f.email_field :email, style:"width:100%;"%>
+         </div>
+        <br>
+            <%= f.submit "Update Your Profile", class: "ui fluid large blue submit button" %>
     </div>
-    <div>
-        <%= f.label :last_name%>
-        <%= f.text_field :last_name%>
+    <div class="ui left floated segment">
+        <%= link_to "Change Password", edit_password_path(current_user.id), class:"btn btn-warning"%>
     </div>
-    <div>
-        <%= f.label :email%>
-        <%= f.email_field :email%>
+    <%# <p class="terms-of-use"><br>
+        By deleing an account, you will be no longer to access<br>
+        <strong style="color:#0000EE;">Conditions of Use</strong> and <strong style="color:#0000EE;">Privacy
+            Notice</strong>.
+    </p> %>
+    <div class="ui right floated segment">
+        <%= link_to "Delete Account", user_path(current_user), method: :delete, data: {confirm: "Are you sure you want to Delete Account?"}, class:"btn btn-danger", type:"button" %>
     </div>
-    <%= f.submit%>
-<% end %> 
-<%= link_to "Change Password", edit_password_path(current_user.id)%>
+    <% end %>
+</div>

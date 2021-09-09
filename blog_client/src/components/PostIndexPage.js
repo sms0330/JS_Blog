@@ -23,10 +23,9 @@ export default function PostIndexPage(props) {
           {posts.map((post, index) => (
             <div className="column" key={index}>
               <div className="ui segment">
+                <strong><h3><Link to={`/posts/${post.id}`}>{post.title}</Link></h3></strong>
                 <Link to={`/posts/${post.id}`}>{post.image.small.url ? <img src={`http://localhost:3000${post.image.small.url}`} alt={post.title} style={{ width: "100%",
       height: "auto" }} /> : null}</Link>
-                <strong><h4><Link to={`/posts/${post.id}`}>{post.title}</Link></h4></strong>
-                
                 <p>{truncate(post.body, 50)}</p>
                 <div className="ui teal tiny segment">
                 <small className="ui green image tiny label">Created at: {new Date(post.created_at).toLocaleDateString()}</small>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:edit, :update, :edit_password, :update_password]
+  before_action :find_user, only: [:edit, :update, :edit_password, :update_password, :destroy]
   before_action :find_posts
 
   def new
@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if @user.id != session[:user_id]
+        redirect_to root_path, notice: "Not Aurthorized, Access Denied!"
+    end
   end
 
   def update
@@ -48,6 +51,12 @@ class UsersController < ApplicationController
   end
 
   def edit_password
+  end
+
+  def destroy
+    session[:user_id] = nil
+    @user.destroy
+    redirect_to root_path
   end
 
   private
