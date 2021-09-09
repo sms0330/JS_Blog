@@ -2,6 +2,14 @@
 <html>
   <head>
     <title>JS Blog</title>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -10,29 +18,33 @@
 
   <body>
     <div class="ui large menu">
-      <span class="left menu">
+      <div class="left menu">
         <div class="active item"><%= link_to "Home", root_path %></div>
         <div class="item"><%= link_to "Posts", posts_path %></div>
-        <div class="item"><%= link_to "New Post", new_post_path %></div>
         <div class="item"><%= render 'searches/search_form', post: @posts.klass %></div>
-      </span>      
-      <span class="right menu">
+      </div>
+      <div class="right menu">
         <% if user_signed_in? %>
-            Hello <%= link_to current_user.full_name, edit_user_path(current_user.id) %>,
-            <%= link_to "Sign Out", session_path, method: :delete, data: {confirm: "are you sure you want to log out?"}, class: "ui orange button"%>
-            <div class="nav-item"><%= link_to 'Favourited Posts', favourited_posts_path %></div>
-          <% else %>
-          <div className="item">
-            <%= link_to "Sign In", new_session_path, class: "ui button" %>
+          <div class="item">
+            Hello! &nbsp;<%= link_to current_user.full_name, edit_user_path(current_user.id) %>,
+            <%= link_to "Sign Out", session_path, method: :delete, data: {confirm: "are you sure you want to log out?"}, class: "ui orange large label"%>
+             <a class="item"><%= link_to "New Post", new_post_path, class: "ui teal button" %></a>
           </div>
-          <div className="item">
+          <div class="item">
+            <%= link_to 'Favourited Posts', favourited_posts_path, class: "ui olive button" %>
+          </div>
+          <% else %>
+          <div class="item">
             <%= link_to "Sign Up", new_user_path, class: "ui primary button" %>
           </div>
-          <div className="item">
-            <%= link_to 'Sign in with Github', sign_in_with_github_path, class: "ui green button" %>
+          <div class="item">
+            <%= link_to "Sign In", new_session_path, class: "ui button" %>
+          </div>
+          <div class="item">
+            <%= link_to 'Sign in with Github', sign_in_with_github_path, class: "ui green mini button" %>
           </div>
           <% end %>
-      </span>
+      </div>
     </div>
     <div>
       <%= render 'layouts/alerts' %>

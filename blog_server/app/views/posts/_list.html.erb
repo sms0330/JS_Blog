@@ -6,8 +6,8 @@
        <% @posts.each do |post| %>
         <div class="column">
             <div class="ui segment">
-                <h3><%=link_to( post.title.truncate(30, separator: " "), post_path(post.id)) %></h3>
-                <div><%= image_tag("#{post.image.small}") %></div>
+                <h3><%= link_to( post.title.truncate(30, separator: " "), post_path(post.id)) %></h3>
+                <div><%= link_to(image_tag("#{post.image.small}", style: "width:100%;height:auto"), post_path(post.id)) %></div>
                 <div><%= post.body.truncate(50, separator: " ") %></div>
                 <div class="ui teal small segment">
                 <small class="ui green image small label">Created at: <%= post.created_at.strftime('%Y-%m-%d') %></small>

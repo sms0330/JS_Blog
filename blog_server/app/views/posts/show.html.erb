@@ -21,7 +21,7 @@
         ) %>
       <% end %>
    
-<p><%= image_tag("#{@post.image.detail}") %></p>
+<p><%= image_tag("#{@post.image.detail}", style: "width:100%;height:auto") %></p>
 <p><%= @post.body %></p>
 <div>
     created_by: <%= @post.user&.full_name || "Deleted" %>
@@ -73,28 +73,27 @@
                 (<%= pluralize(comment.likes.count, "likes") %>)
             </small>
         <p>
-        <small>Commented <%= time_ago_in_words(comment.updated_at) %> ago  | Commented by: <%= comment.user&.full_name || "Deleted" %></small>
+        <small class="ui pointing label">Commented <%= time_ago_in_words(comment.updated_at) %> ago  | Commented by: <%= comment.user&.full_name || "Deleted" %></small>
         <% if can? :crud, comment %>
             <%= link_to "Delete", post_comment_path(comment.post_id, comment.id), class:"btn btn-warning btn-sm", method: :delete, data: {confirm: "Are you sure you want to delete your comment?"} %>
         <% end %>
                   
 
         <div class="comment-nav" align="left">
-            <button onclick="showHide('comment_reply_<%= comment.id %>')" onfocus="this.blur()">Reply</button>
+            <button class="ui teal label" onclick="showHide('comment_reply_<%= comment.id %>')" onfocus="this.blur()">Reply</button>
         </div>
          <div id="comment_reply_<%= comment.id %>" style="display:none;">
-          <h5>Add Reply</h5>
             <%= form_for [@post, comment, Reply.new] do |f| %>
                <%= f.text_field(:body, style:"width:50%;", rows:3, placeholder: "add reply here..") %>
-                <%= f.submit "Create Reply" %>
+                <%= f.submit "Create Reply", class:"ui olive label" %>
             <% end %>
         </div>
           <% comment.replies.each do |reply| %>
                     <div class="text-start" style="margin-left:5rem">
                         <%= reply.body %>
-                         <span class="btn btn-outline-info btn-sm">Replied <%= time_ago_in_words(reply.updated_at) %> ago  | Replied by: <%= reply.user&.full_name %></span>
+                         <span class="ui left pointing label">Replied <%= time_ago_in_words(reply.updated_at) %> ago  | Replied by: <%= reply.user&.full_name || current_user&.full_name %></span>
                          <% if can? :crud, @reply %>
-                           <small><%= link_to "Delete", reply_path(reply), method: :delete, data: {confirm: "Are you sure you want to delete your reply?"} %></small>
+                           <small><%= link_to "Delete", reply_path(reply), class:"ui basic label", method: :delete, data: {confirm: "Are you sure you want to delete your reply?"} %></small>
                         <% end %>
                     </div>
           <% end %>
