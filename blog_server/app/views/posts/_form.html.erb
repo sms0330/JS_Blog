@@ -10,11 +10,11 @@
 <%= form_with model: @post, class: "ui form", local: true do |form| %>
     <div class="field">
        <h3><%= form.label :title, "Title"%></h3>
-       <%= form.text_field :title, style:"width:100%;"%><br>
+       <%= form.text_field :title, placeholder: "Enter Post Title", style:"width:100%;"%><br>
     </div>
     <div class="field">
         <h3><%= form.label :body %></h3>
-        <%= form.text_area :body, style:"width:100%;", rows:3 %><br>
+        <%= form.text_area :body, placeholder: "Enter Post Content", style:"width:100%;", rows:5 %><br>
     </div>
     <div class="field">
         <h3><%= form.label :image %></h3>
@@ -22,7 +22,7 @@
     </div>
     <div class="field">
         <h3><%= form.label :tag_names %></h3>
-        <%= form.text_field :tag_names %>
+        <%= form.text_field :tag_names, placeholder: "Enter Post Tags" %>
     </div>
     <div class="button"><%= form.submit class: "btn btn-outline-primary" %></div>
 <% end %>
