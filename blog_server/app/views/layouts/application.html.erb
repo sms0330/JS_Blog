@@ -26,7 +26,7 @@
       <div class="right menu">
         <% if user_signed_in? %>
           <div class="item">
-            Hello! &nbsp;<%= link_to current_user.full_name, edit_user_path(current_user.id) %>,
+            Welcome &nbsp;<%= link_to current_user.full_name, edit_user_path(current_user.id) %>,
             <%= link_to "Sign Out", session_path, method: :delete, data: {confirm: "are you sure you want to log out?"}, class: "ui orange large label"%>
              <a class="item"><%= link_to "New Post", new_post_path, class: "ui teal button" %></a>
           </div>
