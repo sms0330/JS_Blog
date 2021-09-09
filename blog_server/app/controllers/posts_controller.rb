@@ -21,7 +21,8 @@ class PostsController < ApplicationController
       @post = Post.new post_params
       @post.user = current_user
       if @post.save
-          PostMailer.new_post(@post).deliver_now
+        #   PostMailer.new_post(@post).deliver_now
+          PostMailer.new_post(@post).deliver_later(wait: 10.second)
           redirect_to post_path(@post.id), notice: "Post Saved!"
       else
           render :new
