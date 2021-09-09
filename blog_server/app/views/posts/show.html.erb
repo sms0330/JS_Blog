@@ -22,12 +22,11 @@
       <% end %>
    
 <p><%= image_tag("#{@post.image.detail}", style: "width:100%;height:auto") %></p>
-<p><%= @post.body %></p>
+<b><p><i><%= @post.body %></p></b></i>
+<small class="ui pointing label">
+    Created <%= time_ago_in_words(@post.updated_at)%> | Created_by: <%= @post.user&.full_name || "Deleted" %>
+</small>
 <div>
-    created_by: <%= @post.user&.full_name || "Deleted" %>
-</div>
-<div>
-    <small><%= time_ago_in_words(@post.updated_at)%></small>
     <div class="button">
     <% if can? :crud, @post %>
         <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-primary" %>
@@ -43,7 +42,6 @@
         <% if @comment.errors.any? %>
             <p><% @comment.errors.full_messages.join(",")%></p>
         <% end %>
-
         <div>
             <%= form.text_area(:body, style:"width:100%;", rows:3, placeholder: "What's on your mind?", class:'name_of_css_class')%>
         </div><br>
@@ -72,8 +70,7 @@
             <small>
                 (<%= pluralize(comment.likes.count, "likes") %>)
             </small>
-        <p>
-        <small class="ui pointing label">Commented <%= time_ago_in_words(comment.updated_at) %> ago  | Commented by: <%= comment.user&.full_name || "Deleted" %></small>
+        <small class="ui left pointing label">Commented <%= time_ago_in_words(comment.updated_at) %> ago  | Commented by: <%= comment.user&.full_name || "Deleted" %></small>
         <% if can? :crud, comment %>
             <%= link_to "Delete", post_comment_path(comment.post_id, comment.id), class:"btn btn-warning btn-sm", method: :delete, data: {confirm: "Are you sure you want to delete your comment?"} %>
         <% end %>
