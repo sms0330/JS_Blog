@@ -53,7 +53,7 @@ gem 'rack-cors'
 
 gem 'omniauth-github', '~> 1.4'
 
-gem 'semantic-ui-sass'
+gem 'semantic-ui-sass', '~> 2.2', '>= 2.2.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -279,7 +279,7 @@ DEPENDENCIES
   rails (~> 6.1.4)
   sass-rails (>= 6)
   selectize-rails
-  semantic-ui-sass
+  semantic-ui-sass (~> 2.2, >= 2.2.1.1)
   spring
   tzinfo-data
   web-console (>= 4.1.0)
