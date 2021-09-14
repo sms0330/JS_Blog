@@ -10,8 +10,8 @@
                 <div><%= link_to(image_tag("#{post.image.small}", style: "width:100%;height:auto"), post_path(post.id)) %></div>
                 <div><%= post.body.truncate(50, separator: " ") %></div>
                 <div class="ui teal small segment">
-                <small class="ui green image small label">Created at: <%= post.created_at.strftime('%Y-%m-%d') %></small>
-                <small class="ui blue image small label ">Author: <%= post.user&.first_name %></small>
+                <small class="ui green image tiny label">Created at: <%= post.created_at.strftime('%Y-%m-%d') %></small>
+                <small class="ui blue image tiny label ">Author: <%= post.user&.full_name %></small>
                 </div>
             </div>
         </div>

@@ -1,9 +1,31 @@
 html {
-  padding-left: 4rem;
-  padding-right: 4rem;
+  // padding-left: 4rem;
+  // padding-right: 4rem;
 }
 body {
-  padding-left: 1rem;
+  margin: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@media (min-width: 768px) {
+  body {
+    width: 100%;
+    margin: auto;
+  }
+}
+@media (min-width: 1024px) {
+  body {
+    width: 90%;
+    margin: auto;
+  }
+}
+@media (min-width: 1280px) {
+  body {
+    width: 80%;
+    margin: auto;
+  }
 }
 #post_index {
   padding-left: 1rem;

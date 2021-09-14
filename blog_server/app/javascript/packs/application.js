@@ -16,6 +16,9 @@ import './selectize';
 window.jQuery = $;
 window.$ = $;
 
+import '@doabit/semantic-ui-sass'
+import '@doabit/semantic-ui-sass/src/scss/semantic-ui.scss'
+
 //= require jquery3
 
 //= require popper
